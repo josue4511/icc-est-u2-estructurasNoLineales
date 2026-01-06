@@ -74,16 +74,17 @@ public class IntTree {
     }
 
     /* ================= SIZE ================= */
-    public int size() {
-        return sizeRecursive(root);
-    }
+   public int size() {
+    return countNodes(root);
+}
 
-    private int sizeRecursive(Node<Integer> current) {
-        if (current == null) {
-            return 0;
-        }
+private int countNodes(Node<Integer> node) {
+    if (node == null)
+        return 0;
 
-        return 1 + sizeRecursive(current.left) + sizeRecursive(current.right);
-    }
+    int leftCount = countNodes(node.left);
+    int rightCount = countNodes(node.right);
 
+    return 1 + leftCount + rightCount;
+ }
 }

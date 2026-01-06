@@ -1,4 +1,6 @@
 package structures.trees;
+
+import models.Persona;
 import structures.node.Node;
 
 public class Tree<T extends Comparable<T>> {
@@ -9,6 +11,7 @@ public class Tree<T extends Comparable<T>> {
         this.root = null;
     }
 
+    // INSERT
     public void insert(T value) {
         root = insertRecursive(root, value);
     }
@@ -26,4 +29,39 @@ public class Tree<T extends Comparable<T>> {
 
         return current;
     }
+
+    public void inOrder() {
+        inOrderRecursive(root);
+    }
+
+    protected void inOrderRecursive(Node<T> current) {
+        if (current != null) {
+            inOrderRecursive(current.left);
+            System.out.println(current.value + " ");
+            inOrderRecursive(current.right);
+        }
+    }
+
+    public Persona searchByAge(int age) {
+    return searchByAgeRecursive(root, age);
+}
+
+private Persona searchByAgeRecursive(Node<T> current, int age) {
+    if (current == null) {
+        return null;
+    }
+
+    Persona p = (Persona) current.value;
+
+    if (p.getAge() == age) {
+        return p;
+    }
+
+    Persona leftResult = searchByAgeRecursive(current.left, age);
+    if (leftResult != null) {
+        return leftResult;
+    }
+
+    return searchByAgeRecursive(current.right, age);
+}
 }

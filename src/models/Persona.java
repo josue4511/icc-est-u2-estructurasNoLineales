@@ -1,20 +1,38 @@
 package models;
 
-public class Persona {
+public class Persona implements Comparable<Persona> {
 
-    private String nombre;
-    private int edad;
+    private String name;
+    private int age;
 
-    public Persona(String nombre, int edad) {
-        this.nombre = nombre;
-        this.edad = edad;
+    public Persona(String name, int age) {
+        this.name = name;
+        this.age = age;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public int getEdad() {
-        return edad;
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public int compareTo(Persona otra) {
+        int result = Integer.compare(this.age, otra.age);
+        if (result != 0)
+            return result;
+
+        result = this.name.compareTo(otra.name);
+        if (result != 0)
+            return result;
+
+        return System.identityHashCode(this) - System.identityHashCode(otra);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{name='" + name + "', age=" + age + "}";
     }
 }
