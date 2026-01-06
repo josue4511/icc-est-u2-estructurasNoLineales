@@ -15,8 +15,7 @@ public class App {
         tree.insert(new Persona("Ana", 25));
         tree.insert(new Persona("Pedro", 23));
         tree.insert(new Persona("Luis", 19));
-        tree.inOsrder();
-
+        tree.inOrder();
         Persona findPerson = tree.searchByAge(23);
         if (findPerson != null) {
             System.out.println("Found: " + findPerson);

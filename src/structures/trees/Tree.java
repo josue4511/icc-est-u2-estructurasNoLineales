@@ -42,26 +42,46 @@ public class Tree<T extends Comparable<T>> {
         }
     }
 
+    public T search(T value) {
+        return searchRecursive(root, value);
+    }
+
+    private T searchRecursive(Node<T> current, T value) {
+        if (current == null) {
+            return null;
+        }
+
+        int cmp = value.compareTo(current.value);
+
+        if (cmp == 0) {
+            return current.value;
+        } else if (cmp < 0) {
+            return searchRecursive(current.left, value);
+        } else {
+            return searchRecursive(current.right, value);
+        }
+    }
+
     public Persona searchByAge(int age) {
-    return searchByAgeRecursive(root, age);
-}
-
-private Persona searchByAgeRecursive(Node<T> current, int age) {
-    if (current == null) {
-        return null;
+        return searchByAgeRecursive(root, age);
     }
 
-    Persona p = (Persona) current.value;
+    private Persona searchByAgeRecursive(Node<T> current, int age) {
+        if (current == null) {
+            return null;
+        }
 
-    if (p.getAge() == age) {
-        return p;
+        Persona p = (Persona) current.value;
+
+        if (p.getAge() == age) {
+            return p;
+        }
+
+        Persona leftResult = searchByAgeRecursive(current.left, age);
+        if (leftResult != null) {
+            return leftResult;
+        }
+
+        return searchByAgeRecursive(current.right, age);
     }
-
-    Persona leftResult = searchByAgeRecursive(current.left, age);
-    if (leftResult != null) {
-        return leftResult;
-    }
-
-    return searchByAgeRecursive(current.right, age);
-}
 }
