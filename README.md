@@ -19,3 +19,7 @@ Captura 2 – Tamaño del árbol
 camptura 3- Salida
 
 [resultado Salida](imagenes/)
+
+captura 4- Grap
+[resultado salida](imagenes/Grap/image.png)
+[Codigo](imagenes/CGrap/image.png)
